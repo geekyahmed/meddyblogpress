@@ -6,6 +6,9 @@
   "scripts": {
     "start": "nodemon app.js"
   },
+  "engines": {
+    "node": "10.16.0"
+  },
   "author": "Indranil Mukherjee",
   "license": "ISC",
   "dependencies": {
