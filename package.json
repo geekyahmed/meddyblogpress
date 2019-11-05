@@ -1,7 +1,7 @@
 {
-  "name": "cms-tutorial",
+  "name": "MeddyBlogPress",
   "version": "1.0.1",
-  "description": "Nodejs CMS Application",
+  "description": "A Advanced Nodejs CMS Blogging Application",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
@@ -9,7 +9,7 @@
   "engines": {
     "node": "10.16.0"
   },
-  "author": "Indranil Mukherjee",
+  "author": "Bankole Ahmed",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

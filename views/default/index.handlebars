@@ -1,6 +1,6 @@
         {{#each posts}}
 
-<section class="blog_area area-padding">
+<section class="blog_area area-padding js-scrollbar1">
       <div class="container">
           <div class="row">
               <div class="col-lg-8 mb-5 mb-lg-0">
@@ -8,18 +8,18 @@
                       <article class="blog_item">
                         <div class="blog_item_img">
                           <img class="card-img rounded-0" src="{{file}}" alt="">
-                          <a href="/post/{{id}}" class="blog_item_date">
+                          <a style="text-decoration-line: none;" href="/post/{{id}}" class="blog_item_date">
                             <h3>Read More</h3>
                           </a>
                         </div>
                         
                         <div class="blog_details">
-                            <a class="d-inline-block" href="/post/{{id}}">
-                                <h2>{{title}}</h2>
+                            <a style="text-decoration-line: none;" class="d-inline-block" href="/post/{{id}}">
+                                <h2 style="text-transform: capitalize;">{{title}}</h2>
                             </a>
                             <ul class="blog-info-link">
-                              <li>Posted By<a href="#"><i class="far fa-comments"></i>Admin </a></li>
-                               <li>Posted On<a href="#"><i class="far fa-comments"></i>{{creationDate}} </a></li>
+                              <li><i class="fa fa-user"></i><span></span> Posted By <a href="#">Admin </a></li>
+                               <li><i class="fa fa-calendar"></i> Posted On {{creationDate}} </li>
                             </ul>
                         </div>
                       </article>
@@ -50,19 +50,15 @@
                             <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button>
                           </form>
                       </aside>
-
-                      <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Category</h4>
-                                                                              {{#each categories}}
-                        <ul class="list cat-list">
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p{{title}}</p>
-                                </a>
-                            </li>
-                          
-                        </ul>
-                        {{/each}}
+                      <aside class="single_sidebar_widget tag_cloud_widget">
+                          <h4 class="widget_title">Categories</h4>
+                                {{#each categories}}
+                          <ul class="list">
+                              <li>
+                                  <a href="#">{{title}}</a>
+                              </li>
+                          </ul>
+                          {{/each}}
                       </aside>
 
                       <aside class="single_sidebar_widget popular_post_widget">
