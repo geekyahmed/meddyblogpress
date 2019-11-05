@@ -20,7 +20,7 @@ const PostSchema = new Schema({
     
     creationDate: {
         type: Date,
-        default: Date.now()
+        default: Date
     },
     
     user: {

@@ -7,7 +7,7 @@
                   <div class="blog_left_sidebar">
                       <article class="blog_item">
                         <div class="blog_item_img">
-                          <img class="card-img rounded-0" src="{{file}}" alt="">
+                          <img style="height: 500px; width: 1000px;" class="card-img " src="{{file}}" alt="">
                           <a style="text-decoration-line: none;" href="/post/{{id}}" class="blog_item_date">
                             <h3>Read More</h3>
                           </a>
@@ -53,7 +53,7 @@
                       <aside class="single_sidebar_widget tag_cloud_widget">
                           <h4 class="widget_title">Categories</h4>
                                 {{#each categories}}
-                          <ul class="list">
+                          <ul class="list d-flex">
                               <li>
                                   <a href="#">{{title}}</a>
                               </li>

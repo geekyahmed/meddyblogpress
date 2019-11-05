@@ -159,44 +159,64 @@
                 </div>
             </aside>
 
-<div class="container">
-    <div class="alert alert-secondary text-center">
-        <h1>ALL POSTS</h1>    
-    </div>
-        
-    <table class="table table-bordered">
-        <thead class="bg-dark text-center">
-        <tr class="text-white">          
-            <th>Title</th>
+                        <div class="row container-fluid">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                            <div class="jumbotron">
+                                <h2 style="text-transform:uppercase;" class="display-5 text-center">All Posts</h2>
+                            </div>
+                                <div class="table-responsive table-responsive-data2 mb-3">
+                                    <table class="table table-data2 ">
+                                        <thead>
+                                            <tr>
+                                                <th>Thumbnail</th>
+                                               <th>Title</th>
             <th>Description</th>
+            <th>Date Posted</th>
             <th>Status</th>
             <th>Comments Allowed</th>
             <th>Category</th>
             <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody class="text-center">
-        {{#each posts}}
-            <tr>               
-                <td>{{title}}</td>
-                <td>{{description}}</td>
-                <td>{{status}}</td>
-                <td>{{allowComments}}</td>
-                <td>{{category.title}}</td>
-                <td class="d-flex">
-                    <a href="/admin/posts/edit/{{_id}}" class="btn btn-sm btn-warning mr-2">Edit Post</a>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="mb-3">
+                                                    {{#each posts}}
 
-                    <form action="/admin/posts/delete/{{id}}?newMethod=DELETE" method="post">
-                        <button class="btn btn-sm btn-danger" type="submit">Delete Post</button>
-                    </form>
-                    
-                    
-                </td>
-            </tr>    
-        {{/each}}
-        
-        </tbody>
-    </table>
-    
-    
-</div>
+                                            <tr class="tr-shadow mb-3">
+                                                <td>
+                                                    <img src="{{file}}" alt="">
+                                                </td>
+                                                <td>
+                                                    <span class="block-email">{{title}}</span>
+                                                </td>
+                                                <td class="desc">{{description}}</td>
+                                                <td>{{creationDate}}</td>
+                                                <td>
+                                                    <span class="status--process">{{status}}</span>
+                                                </td>
+                                                <td>{{allowComments}}</td>
+                                                 <td>{{category.title}}</td>
+                                                <td>
+                                                    <div class="table-data-feature">
+                                                                            <a href="/admin/posts/edit/{{_id}}" class="mr-2">        <button class="item" data-toggle="tooltip" data-placement="top" title="View">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button></a>
+                                                        <a href="/post/{{id}}">
+                                                        <button class="item mr-2" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
+                                                        </a>
+                                                        
+                                                            <form action="/admin/posts/delete/{{id}}?newMethod=DELETE" method="post">
+                                                               <button class="item" type="submit"data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-ban"></i></button>
+                                                           </form>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
