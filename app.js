@@ -1,44 +1,45 @@
 /* Importing Different Modules */
 
-const {globalVariables} = require('./config/configuration');
+const { globalVariables } = require("./config/configuration");
 
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const hbs = require('express-handlebars');
-const {mongoDbUrl, PORT} = require('./config/configuration');
-const flash = require('connect-flash');
-const session = require('express-session');
-const methodOverride = require('method-override');
-const {selectOption} = require('./config/customFunctions');
-const fileUpload = require('express-fileupload');
-const passport = require('passport');
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
+const hbs = require("express-handlebars");
+const { mongoDbUrl, PORT } = require("./config/configuration");
+const flash = require("connect-flash");
+const session = require("express-session");
+const methodOverride = require("method-override");
+const { selectOption } = require("./config/customFunctions");
+const fileUpload = require("express-fileupload");
+const passport = require("passport");
+const settings = require("./models/Settings");
 
 const app = express();
 
-
 // Configure Mongoose to Connect to MongoDB
-mongoose.connect(mongoDbUrl, { useNewUrlParser: true })
-    .then(response => {
-        console.log("MongoDB Connected Successfully.");
-    }).catch(err => {
-        console.log("Database connection failed.");
-});
-
-
+mongoose
+  .connect(mongoDbUrl, { useNewUrlParser: true })
+  .then(response => {
+    console.log("MongoDB Connected Successfully.");
+  })
+  .catch(err => {
+    console.log("Database connection failed.");
+  });
 
 /* Configure express*/
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
 /*  Flash and Session*/
-app.use(session({
-    secret: 'anysecret',
+app.use(
+  session({
+    secret: "anysecret",
     saveUninitialized: true,
     resave: true
-}));
+  })
+);
 
 app.use(flash());
 
@@ -49,28 +50,44 @@ app.use(passport.session());
 /* Use Global Variables */
 app.use(globalVariables);
 
-
 /* File Upload Middleware*/
 app.use(fileUpload());
 
 /* Setup View Engine To Use Handlebars */
-app.engine('handlebars', hbs({defaultLayout: 'default', helpers: {select: selectOption}}));
-app.set('view engine' , 'handlebars');
+app.engine(
+  "handlebars",
+  hbs({ defaultLayout: "default", helpers: { select: selectOption } })
+);
+app.set("view engine", "handlebars");
 
+app.get("/admin/settings", (req, res) => {
+  res.render("admin/settings");
+});
 
 /* Method Override Middleware*/
-app.use(methodOverride('newMethod'));
+app.use(methodOverride("newMethod"));
 
+// app.post("/admin/savesettings", (req, res) => {
+//   tutorial_cms.collection("settings").update(
+//     {},
+//     {
+//       postlimit: req.body.postlimit
+//     },
+//     { upsert: true },
+//     function(error, document) {
+//       res.redirect("/admin/settings");
+//     }
+//   );
+// });
 
 /* Routes */
-const defaultRoutes = require('./routes/defaultRoutes');
-const adminRoutes = require('./routes/adminRoutes');
+const defaultRoutes = require("./routes/defaultRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
-app.use('/', defaultRoutes);
-app.use('/admin', adminRoutes);
-
+app.use("/", defaultRoutes);
+app.use("/admin", adminRoutes);
 
 /* Start The Server */
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
